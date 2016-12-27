@@ -12,6 +12,11 @@
 		1F83FFCF1E0C9F5100A35850 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F83FFCD1E0C9F5100A35850 /* Main.storyboard */; };
 		1F83FFD11E0C9F5100A35850 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F83FFD01E0C9F5100A35850 /* Assets.xcassets */; };
 		1F83FFD41E0C9F5100A35850 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F83FFD21E0C9F5100A35850 /* LaunchScreen.storyboard */; };
+		1F83FFDC1E0C9F8D00A35850 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 1F83FFDB1E0C9F8D00A35850 /* Podfile */; };
+		1FD5B7751E1204EF00CF9552 /* FoodDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD5B7741E1204EF00CF9552 /* FoodDataFetcher.swift */; };
+		1FD5B7771E12091100CF9552 /* FSClient+Comparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD5B7761E12091100CF9552 /* FSClient+Comparison.swift */; };
+		1FD5B77D1E124B4000CF9552 /* FoodComparer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD5B77C1E124B4000CF9552 /* FoodComparer.swift */; };
+		6663B8E7D9C4D9B9373C5CF3 /* Pods_Replicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19519927A128DD0B8F114AA /* Pods_Replicator.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,13 @@
 		1F83FFD01E0C9F5100A35850 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F83FFD31E0C9F5100A35850 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F83FFD51E0C9F5100A35850 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F83FFDB1E0C9F8D00A35850 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1FD5B7741E1204EF00CF9552 /* FoodDataFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodDataFetcher.swift; sourceTree = "<group>"; };
+		1FD5B7761E12091100CF9552 /* FSClient+Comparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FSClient+Comparison.swift"; sourceTree = "<group>"; };
+		1FD5B77C1E124B4000CF9552 /* FoodComparer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodComparer.swift; sourceTree = "<group>"; };
+		5538CC893AB5DCC9D2EDFC2B /* Pods-Replicator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Replicator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Replicator/Pods-Replicator.release.xcconfig"; sourceTree = "<group>"; };
+		BE5C9ADAC8B9700CDFF964D9 /* Pods-Replicator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Replicator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Replicator/Pods-Replicator.debug.xcconfig"; sourceTree = "<group>"; };
+		D19519927A128DD0B8F114AA /* Pods_Replicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Replicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6663B8E7D9C4D9B9373C5CF3 /* Pods_Replicator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,8 +51,11 @@
 		1F83FFBD1E0C9F5100A35850 = {
 			isa = PBXGroup;
 			children = (
+				1F83FFDB1E0C9F8D00A35850 /* Podfile */,
 				1F83FFC81E0C9F5100A35850 /* Replicator */,
 				1F83FFC71E0C9F5100A35850 /* Products */,
+				F10DF286E4FCE75148A1FE7B /* Pods */,
+				A7480BD6B36AAB221AEFA9FF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +71,33 @@
 			isa = PBXGroup;
 			children = (
 				1F83FFC91E0C9F5100A35850 /* AppDelegate.swift */,
+				1FD5B7761E12091100CF9552 /* FSClient+Comparison.swift */,
 				1F83FFCB1E0C9F5100A35850 /* ViewController.swift */,
+				1FD5B7741E1204EF00CF9552 /* FoodDataFetcher.swift */,
 				1F83FFCD1E0C9F5100A35850 /* Main.storyboard */,
+				1FD5B77C1E124B4000CF9552 /* FoodComparer.swift */,
 				1F83FFD01E0C9F5100A35850 /* Assets.xcassets */,
 				1F83FFD21E0C9F5100A35850 /* LaunchScreen.storyboard */,
 				1F83FFD51E0C9F5100A35850 /* Info.plist */,
 			);
 			path = Replicator;
+			sourceTree = "<group>";
+		};
+		A7480BD6B36AAB221AEFA9FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D19519927A128DD0B8F114AA /* Pods_Replicator.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F10DF286E4FCE75148A1FE7B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE5C9ADAC8B9700CDFF964D9 /* Pods-Replicator.debug.xcconfig */,
+				5538CC893AB5DCC9D2EDFC2B /* Pods-Replicator.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +107,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F83FFD81E0C9F5100A35850 /* Build configuration list for PBXNativeTarget "Replicator" */;
 			buildPhases = (
+				7C8EE533F4A3CB8433C3136C /* [CP] Check Pods Manifest.lock */,
 				1F83FFC21E0C9F5100A35850 /* Sources */,
 				1F83FFC31E0C9F5100A35850 /* Frameworks */,
 				1F83FFC41E0C9F5100A35850 /* Resources */,
+				5811C3BA8A0C59091CCBAE67 /* [CP] Embed Pods Frameworks */,
+				89C6FE7B31788B2CDCD5649C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -126,18 +165,70 @@
 			files = (
 				1F83FFD41E0C9F5100A35850 /* LaunchScreen.storyboard in Resources */,
 				1F83FFD11E0C9F5100A35850 /* Assets.xcassets in Resources */,
+				1F83FFDC1E0C9F8D00A35850 /* Podfile in Resources */,
 				1F83FFCF1E0C9F5100A35850 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5811C3BA8A0C59091CCBAE67 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Replicator/Pods-Replicator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C8EE533F4A3CB8433C3136C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		89C6FE7B31788B2CDCD5649C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Replicator/Pods-Replicator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1F83FFC21E0C9F5100A35850 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FD5B77D1E124B4000CF9552 /* FoodComparer.swift in Sources */,
 				1F83FFCC1E0C9F5100A35850 /* ViewController.swift in Sources */,
+				1FD5B7751E1204EF00CF9552 /* FoodDataFetcher.swift in Sources */,
+				1FD5B7771E12091100CF9552 /* FSClient+Comparison.swift in Sources */,
 				1F83FFCA1E0C9F5100A35850 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +350,7 @@
 		};
 		1F83FFD91E0C9F5100A35850 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE5C9ADAC8B9700CDFF964D9 /* Pods-Replicator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W36PVYAHBM;
@@ -272,6 +364,7 @@
 		};
 		1F83FFDA1E0C9F5100A35850 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5538CC893AB5DCC9D2EDFC2B /* Pods-Replicator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W36PVYAHBM;
@@ -302,6 +395,7 @@
 				1F83FFDA1E0C9F5100A35850 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
