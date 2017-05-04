@@ -9,35 +9,41 @@
 import UIKit
 import FatSecretKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, FoodSearchClientDelegate, UITextFieldDelegate {
     
+    @IBOutlet weak var compareButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var resultImageView: UIImageView!
-    var firstFoodEntered = false
-    var secondFoodEntered = false
-    var firstFood: String?
-    var secondFood: String?
-    var foods: [FSFood]?
+    @IBOutlet weak var firstFoodTextField: UITextField!
+    @IBOutlet weak var secondFoodTextField: UITextField!
+    var firstFood: String? {
+        get{
+            return firstFoodTextField?.text
+        }
+    }
+    var secondFood: String? {
+        return secondFoodTextField?.text
+    }
     
     func setup()
     {
-        FSClient.shared().oauthConsumerKey = "9f75a0ffde2c415fb401e3649f2685f6"
-        FSClient.shared().oauthConsumerSecret = "806be4a0328941109cb9dffbe0c03118"
+        FoodSearchClient.sharedInstance.sharedFSClient = FSClient.shared()
+        FoodSearchClient.sharedInstance.sharedFSClient!.oauthConsumerKey = "9f75a0ffde2c415fb401e3649f2685f6"
+        FoodSearchClient.sharedInstance.sharedFSClient!.oauthConsumerSecret = "806be4a0328941109cb9dffbe0c03118"
+        FoodSearchClient.sharedInstance.setup()
+        FoodSearchClient.sharedInstance.delegate = self
+    }
+    
+    func didGetResultsForSearch(result: String) {
+        activityIndicator.stopAnimating()
+        updateUIForResult(result: result)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-    }
-    @IBAction func didEnterFirstFood(_ sender: UITextField)
-    {
-        firstFood = sender.text!
-        firstFoodEntered = true
-    }
-
-    @IBAction func didEnterSecondFood(_ sender: UITextField)
-    {
-        secondFood = sender.text!
-        secondFoodEntered = true
+        firstFoodTextField.delegate = self
+        secondFoodTextField.delegate = self
     }
         
     override func didReceiveMemoryWarning() {
@@ -45,34 +51,41 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func pressCompare(_ sender: Any)
+    @IBAction func pressCompare(_ sender: UIButton)
     {
-        if firstFoodEntered && secondFoodEntered
+        if firstFood != nil && secondFood != nil
         {
-            searchForFood(food: firstFood!, completion: { })
-            searchForFood(food: secondFood!, completion: updateUI)
+            FoodSearchClient.sharedInstance.getFoods(foodOne: firstFood!, foodTwo: secondFood!)
+            
+            activityIndicator.startAnimating()
+            
+            sender.isHidden = true
         }
         
     }
     
-    func updateUI()
+    func updateUIForResult(result: String)
     {
-        
-        self.resultImageView.image = UIImage(named: "check")
-    }
-    
-    func searchForFood(food: String, completion: @escaping () -> ())
-    {
-        FSClient.shared().searchFoods(food) { (foodResults : [Any]?, maxResults : NSInteger, totalResults : NSInteger, pageNumber : NSInteger) in
-            if let array = foodResults
-            {
-                 self.foods!.append(array[0] as! FSFood)
-                 completion()
-            }
+        if result == "true"
+        {
+                self.resultImageView.image = UIImage(named: "check")
         }
+        else if result == "false"
+        {
+                 self.resultImageView.image = UIImage(named: "x")
+        }
+        else
+        {
+            self.resultImageView.image = UIImage(named: "questionmark")
+        }
+        
+        compareButton.isHidden = false
+   
     }
     
-  
-
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true;
+    }
 }
-

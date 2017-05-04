@@ -7,26 +7,28 @@
 //
 
 import FatSecretKit
-import FoodComparer
 
 protocol FoodSearchClientDelegate
 {
-    func didGetResultsForSearch(areComprable: Bool)
+    func didGetResultsForSearch(result: String)
 }
 
 class FoodSearchClient: FSClient
 {
+    static let sharedInstance = FoodSearchClient()
     let firstSearchNotificationName = "FirstFoodSearchCompletedNotification"
-    let secondSerchSelectorStrign = "getSecondFood"
+    let secondSerchSelectorString = "getSecondFood"
     var delegate: FoodSearchClientDelegate?
     private var foodOneString: String = ""
     private var foodTwoString: String = ""
     private var foodOne: FSFood?
     private var foodTwo: FSFood?
+    private var sharedSearchClient: FoodSearchClient?
+    var sharedFSClient: FSClient?
     
     func setup()
     {
-        NotificationCenter.default.addObserver(self, selector: Selector(("getSecondFood:=")), name: NSNotification.Name(rawValue: firstSearchNotificationName), object: nil)
+        NotificationCenter.default.addObserver(self, selector: Selector((secondSerchSelectorString)), name: NSNotification.Name(rawValue: firstSearchNotificationName), object: nil)
     }
     
     
@@ -34,24 +36,48 @@ class FoodSearchClient: FSClient
     {
         self.foodOneString = foodOne
         self.foodTwoString = foodTwo
-        self.searchFoods(foodOne) {
-            foods, maxResults, totalResulsts, pageNumber  -> Void in
-            self.getFood((foods?[0] as? FSFood)!.identifier, completion: { (food: FSFood) -> Void in
-                self.foodOne  = food
-                NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: firstSearchNotificationName)))
-            })
+        sharedFSClient!.searchFoods(foodOneString) {
+            foods, maxResults, totalResults, pageNumber  -> Void in
+            if totalResults > 0
+            {
+                let castedFood = (foods?[0]) as! FSFood
+                
+                self.sharedFSClient!.getFood(castedFood.identifier, completion: {
+                    food -> Void in
+                        self.foodOne = food
+                    NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: self.firstSearchNotificationName)))
+                    
+                })
+                
+            }
+            else
+            {
+                     self.delegate?.didGetResultsForSearch(result: "not found")
+            }
         }
     }
     
     func getSecondFood()
     {
-        self.searchFoods(foodTwo) {
-            foods, maxResults, totalResulsts, pageNumber  -> Void in
-            self.getFood((foods?[0] as? FSFood)!.identifier, completion: { (food: FSFood) -> Void in
-                foodTwo = food
-                self.delegate?.didGetResultsForSearch(foodOne?.isComparableToFood(otherFood: food))
-            })
-        }
+        sharedFSClient!.searchFoods(foodTwoString) {
+            foods, maxResults, totalResults, pageNumber  -> Void in
+            
+            if totalResults > 0
+            {
+                let castedFood = foods?[0] as! FSFood
+                self.sharedFSClient!.getFood(castedFood.identifier, completion: {
+                    food -> Void in
+                    self.foodTwo = food
+                    self.delegate?.didGetResultsForSearch(result: String((self.foodOne?.isComparableToFood(otherFood: self.foodTwo!))!))
+                    
+                })
 
+            }
+            else
+            {
+                  self.delegate?.didGetResultsForSearch(result: "not found")
+            }
+        
+        }
     }
 }
