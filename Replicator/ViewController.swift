@@ -35,47 +35,53 @@ class ViewController: UIViewController, FoodSearchClientDelegate, UITextFieldDel
     }
     
     func didGetResultsForSearch(result: String) {
-        activityIndicator.stopAnimating()
-        updateUIForResult(result: result)
+        weak var weakSelf: ViewController? = self
+        DispatchQueue.main.async {
+            weakSelf?.activityIndicator.stopAnimating()
+            weakSelf?.updateUIForResult(result: result)
+        }
+    
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         firstFoodTextField.delegate = self
         secondFoodTextField.delegate = self
     }
-
+    
     @IBAction func pressCompare(_ sender: UIButton)
     {
-        if firstFood != nil && secondFood != nil
-        {
-            FoodSearchClient.sharedInstance.getFoods(foodOne: firstFood!, foodTwo: secondFood!)
-            
-            activityIndicator.startAnimating()
-            
-            sender.isHidden = true
+        guard firstFood != nil && secondFood != nil else {
+            return
         }
         
+        FoodSearchClient.sharedInstance.getFoods(foodOne: firstFood!, foodTwo: secondFood!)
+        
+        activityIndicator.startAnimating()
+        
+        sender.isHidden = true
     }
     
     func updateUIForResult(result: String)
     {
-        if result == "true"
-        {
-                self.resultImageView.image = UIImage(named: "check")
+        weak var weakSelf: ViewController? = self
+        DispatchQueue.main.async {
+            if result == "true"
+            {
+                weakSelf?.resultImageView.image = UIImage(named: "check")
+            }
+            else if result == "false"
+            {
+                weakSelf?.resultImageView.image = UIImage(named: "x")
+            }
+            else
+            {
+                weakSelf?.resultImageView.image = UIImage(named: "questionmark")
+            }
+            
+            weakSelf?.compareButton.isHidden = false
         }
-        else if result == "false"
-        {
-                 self.resultImageView.image = UIImage(named: "x")
-        }
-        else
-        {
-            self.resultImageView.image = UIImage(named: "questionmark")
-        }
-        
-        compareButton.isHidden = false
-   
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
