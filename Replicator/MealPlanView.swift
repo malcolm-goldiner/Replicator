@@ -31,7 +31,7 @@ class MealPlanView: UIView
     let lineLength: CGFloat = 200
     var currentCircleEndingPosition: CGPoint?
     let mealLabelFontSize: CGFloat = 9.0
-    var mealCircleCircumference: CGFloat  {
+    var mealCircleDiameter: CGFloat  {
         get {
             return MealPlanView.mealCircleRadius * 2
         }
@@ -67,6 +67,10 @@ class MealPlanView: UIView
     }
     
     func drawLineToNextMeal() {
+        guard currentCircleEndingPosition != nil else {
+            return
+        }
+        
         let linePath = UIBezierPath()
         linePath.move(to: CGPoint(x:self.currentCircleEndingPosition!.x, y: currentCircleEndingPosition!.y))
         linePath.addLine(to: CGPoint(x: self.currentCircleEndingPosition!.x, y: self.currentCircleEndingPosition!.y + self.lineLength))
@@ -92,7 +96,7 @@ class MealPlanView: UIView
             
             circlePath = UIBezierPath(arcCenter: CGPoint(x: currentCircleEndingPosition!.x, y: currentCircleEndingPosition!.y + lineLength + MealPlanView.mealCircleRadius), radius: CGFloat(MealPlanView.mealCircleRadius), startAngle: CGFloat(mealCircleStartingAngle), endAngle:CGFloat(mealCircleEndingAngle), clockwise: true)
             
-            currentCircleEndingPosition = CGPoint(x: mapStartingPoint.x, y: currentCircleEndingPosition!.y + lineLength + MealPlanView.mealCircleRadius * 2)
+            currentCircleEndingPosition = CGPoint(x: mapStartingPoint.x, y: currentCircleEndingPosition!.y + lineLength + mealCircleDiameter)
         }
         
         let shapeLayer = CAShapeLayer()
@@ -104,12 +108,15 @@ class MealPlanView: UIView
         
         self.layer.addSublayer(shapeLayer)
         
-        let mealLabel = UILabel()
-        mealLabel.text = foodString
-        mealLabel.font = UIFont.systemFont(ofSize: mealLabelFontSize)
-        mealLabel.sizeToFit()
-        mealLabel.frame = CGRect(x: mapStartingPoint.x + mealCircleCircumference + mealCircleToMealLabelHorizontalSpacing, y: currentCircleEndingPosition!.y  - MealPlanView.mealCircleRadius - (mealLabel.frame.size.height / 2), width: mealLabel.frame.size.width, height: mealLabel.frame.size.height)
-        addSubview(mealLabel)
+        if let previousCircleEndY = currentCircleEndingPosition?.y {
+            let mealLabel = UILabel()
+            mealLabel.text = foodString
+            mealLabel.font = UIFont.systemFont(ofSize: mealLabelFontSize)
+            mealLabel.sizeToFit()
+            mealLabel.frame = CGRect(x: mapStartingPoint.x + mealCircleDiameter + mealCircleToMealLabelHorizontalSpacing, y: previousCircleEndY  - MealPlanView.mealCircleRadius - (mealLabel.frame.size.height / 2), width: mealLabel.frame.size.width, height: mealLabel.frame.size.height)
+            addSubview(mealLabel)
+        }
+      
     }
     
 }
