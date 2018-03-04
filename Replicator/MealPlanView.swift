@@ -15,9 +15,9 @@ class Meal
     var mealThumbnailImage: UIImage?
 }
 
-class MealPlan: UIView
+class MealPlanView: UIView
 {
-    static let mealCircleRadius: CGFloat = 5.0
+    static let mealCircleRadius: CGFloat = 10.0
     var creatorName: String?
     var creatorThumbnailImage: UIImage?
     var meals: [Meal]?
@@ -33,7 +33,7 @@ class MealPlan: UIView
     let mealLabelFontSize: CGFloat = 9.0
     var mealCircleCircumference: CGFloat  {
         get {
-            return MealPlan.mealCircleRadius * 2
+            return MealPlanView.mealCircleRadius * 2
         }
     }
     
@@ -52,15 +52,16 @@ class MealPlan: UIView
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        addTestMeals()
-       
-        for meal in meals! {
-            if (currentCircleEndingPosition != nil) {
-                drawLineToNextMeal()
-            }
-
-            if (meal.mealName != nil) {
-                drawMealCircleForMeal(meal.mealName!)
+        
+        if let validMeals = meals {
+            for meal in validMeals {
+                if (currentCircleEndingPosition != nil) {
+                    drawLineToNextMeal()
+                }
+                
+                if (meal.mealName != nil) {
+                    drawMealCircleForMeal(meal.mealName!)
+                }
             }
         }
     }
@@ -80,19 +81,24 @@ class MealPlan: UIView
         var circlePath: UIBezierPath
         if (currentCircleEndingPosition == nil)
         {
-            circlePath = UIBezierPath(arcCenter: CGPoint(x: mapStartingPoint.x,y: mapStartingPoint.y), radius: MealPlan.mealCircleRadius, startAngle: CGFloat(mealCircleStartingAngle), endAngle:CGFloat(mealCircleEndingAngle), clockwise: true)
+            circlePath = UIBezierPath(arcCenter: CGPoint(x: mapStartingPoint.x,y: mapStartingPoint.y), radius: MealPlanView.mealCircleRadius, startAngle: CGFloat(mealCircleStartingAngle), endAngle:CGFloat(mealCircleEndingAngle), clockwise: true)
             
-            currentCircleEndingPosition = CGPoint(x: mapStartingPoint.x, y: mapStartingPoint.y + MealPlan.mealCircleRadius)
+            currentCircleEndingPosition = CGPoint(x: mapStartingPoint.x, y: mapStartingPoint.y + MealPlanView.mealCircleRadius)
         } else {
-             circlePath = UIBezierPath(arcCenter: CGPoint(x: currentCircleEndingPosition!.x, y: currentCircleEndingPosition!.y + lineLength), radius: CGFloat(MealPlan.mealCircleRadius), startAngle: CGFloat(mealCircleStartingAngle), endAngle:CGFloat(mealCircleEndingAngle), clockwise: true)
             
-                currentCircleEndingPosition = CGPoint(x: mapStartingPoint.x, y: currentCircleEndingPosition!.y + lineLength + MealPlan.mealCircleRadius)
+            guard currentCircleEndingPosition != nil else {
+                return
+            }
+            
+            circlePath = UIBezierPath(arcCenter: CGPoint(x: currentCircleEndingPosition!.x, y: currentCircleEndingPosition!.y + lineLength + MealPlanView.mealCircleRadius), radius: CGFloat(MealPlanView.mealCircleRadius), startAngle: CGFloat(mealCircleStartingAngle), endAngle:CGFloat(mealCircleEndingAngle), clockwise: true)
+            
+            currentCircleEndingPosition = CGPoint(x: mapStartingPoint.x, y: currentCircleEndingPosition!.y + lineLength + MealPlanView.mealCircleRadius * 2)
         }
-       
+        
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circlePath.cgPath
         
-        shapeLayer.fillColor = mealCircleColor.cgColor
+        shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = mealCircleColor.cgColor
         shapeLayer.lineWidth = mealCircleLineWidth
         
@@ -102,7 +108,7 @@ class MealPlan: UIView
         mealLabel.text = foodString
         mealLabel.font = UIFont.systemFont(ofSize: mealLabelFontSize)
         mealLabel.sizeToFit()
-        mealLabel.frame = CGRect(x: mapStartingPoint.x + mealCircleCircumference + mealCircleToMealLabelHorizontalSpacing, y: currentCircleEndingPosition!.y  - MealPlan.mealCircleRadius - (mealLabel.frame.size.height / 2), width: mealLabel.frame.size.width, height: mealLabel.frame.size.height)
+        mealLabel.frame = CGRect(x: mapStartingPoint.x + mealCircleCircumference + mealCircleToMealLabelHorizontalSpacing, y: currentCircleEndingPosition!.y  - MealPlanView.mealCircleRadius - (mealLabel.frame.size.height / 2), width: mealLabel.frame.size.width, height: mealLabel.frame.size.height)
         addSubview(mealLabel)
     }
     

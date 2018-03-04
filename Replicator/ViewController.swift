@@ -45,11 +45,6 @@ class ViewController: UIViewController, FoodSearchClientDelegate, UITextFieldDel
         firstFoodTextField.delegate = self
         secondFoodTextField.delegate = self
     }
-        
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     @IBAction func pressCompare(_ sender: UIButton)
     {

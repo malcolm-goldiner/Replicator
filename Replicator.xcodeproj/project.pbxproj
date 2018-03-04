@@ -13,9 +13,12 @@
 		1F83FFD11E0C9F5100A35850 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F83FFD01E0C9F5100A35850 /* Assets.xcassets */; };
 		1F83FFD41E0C9F5100A35850 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F83FFD21E0C9F5100A35850 /* LaunchScreen.storyboard */; };
 		1F83FFDC1E0C9F8D00A35850 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 1F83FFDB1E0C9F8D00A35850 /* Podfile */; };
+		1F948721204BB1D200DDBBFA /* MealPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F948720204BB1D200DDBBFA /* MealPlanViewController.swift */; };
+		1F948723204BB9D800DDBBFA /* SwipeableMealView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F948722204BB9D800DDBBFA /* SwipeableMealView.xib */; };
+		1F948725204BBEF300DDBBFA /* SwipeableMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F948724204BBEF300DDBBFA /* SwipeableMealView.swift */; };
 		1FD5B7771E12091100CF9552 /* FSClient+Comparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD5B7761E12091100CF9552 /* FSClient+Comparison.swift */; };
 		1FD5B77D1E124B4000CF9552 /* FoodComparer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD5B77C1E124B4000CF9552 /* FoodComparer.swift */; };
-		1FEBF5A01E19999A00F10B7D /* MealPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBF59F1E19999A00F10B7D /* MealPlan.swift */; };
+		1FEBF5A01E19999A00F10B7D /* MealPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBF59F1E19999A00F10B7D /* MealPlanView.swift */; };
 		1FEBF5A21E199C1D00F10B7D /* MealPlanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FEBF5A11E199C1C00F10B7D /* MealPlanView.xib */; };
 		6663B8E7D9C4D9B9373C5CF3 /* Pods_Replicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19519927A128DD0B8F114AA /* Pods_Replicator.framework */; };
 /* End PBXBuildFile section */
@@ -29,9 +32,12 @@
 		1F83FFD31E0C9F5100A35850 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F83FFD51E0C9F5100A35850 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F83FFDB1E0C9F8D00A35850 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1F948720204BB1D200DDBBFA /* MealPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlanViewController.swift; sourceTree = "<group>"; };
+		1F948722204BB9D800DDBBFA /* SwipeableMealView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeableMealView.xib; sourceTree = "<group>"; };
+		1F948724204BBEF300DDBBFA /* SwipeableMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableMealView.swift; sourceTree = "<group>"; };
 		1FD5B7761E12091100CF9552 /* FSClient+Comparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FSClient+Comparison.swift"; sourceTree = "<group>"; };
 		1FD5B77C1E124B4000CF9552 /* FoodComparer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodComparer.swift; sourceTree = "<group>"; };
-		1FEBF59F1E19999A00F10B7D /* MealPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealPlan.swift; sourceTree = "<group>"; };
+		1FEBF59F1E19999A00F10B7D /* MealPlanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealPlanView.swift; sourceTree = "<group>"; };
 		1FEBF5A11E199C1C00F10B7D /* MealPlanView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MealPlanView.xib; sourceTree = "<group>"; };
 		5538CC893AB5DCC9D2EDFC2B /* Pods-Replicator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Replicator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Replicator/Pods-Replicator.release.xcconfig"; sourceTree = "<group>"; };
 		BE5C9ADAC8B9700CDFF964D9 /* Pods-Replicator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Replicator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Replicator/Pods-Replicator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -75,9 +81,12 @@
 				1F83FFC91E0C9F5100A35850 /* AppDelegate.swift */,
 				1FD5B7761E12091100CF9552 /* FSClient+Comparison.swift */,
 				1F83FFCB1E0C9F5100A35850 /* ViewController.swift */,
+				1F948720204BB1D200DDBBFA /* MealPlanViewController.swift */,
 				1F83FFCD1E0C9F5100A35850 /* Main.storyboard */,
-				1FEBF59F1E19999A00F10B7D /* MealPlan.swift */,
+				1FEBF59F1E19999A00F10B7D /* MealPlanView.swift */,
 				1FEBF5A11E199C1C00F10B7D /* MealPlanView.xib */,
+				1F948722204BB9D800DDBBFA /* SwipeableMealView.xib */,
+				1F948724204BBEF300DDBBFA /* SwipeableMealView.swift */,
 				1FD5B77C1E124B4000CF9552 /* FoodComparer.swift */,
 				1F83FFD01E0C9F5100A35850 /* Assets.xcassets */,
 				1F83FFD21E0C9F5100A35850 /* LaunchScreen.storyboard */,
@@ -170,6 +179,7 @@
 				1F83FFD11E0C9F5100A35850 /* Assets.xcassets in Resources */,
 				1FEBF5A21E199C1D00F10B7D /* MealPlanView.xib in Resources */,
 				1F83FFDC1E0C9F8D00A35850 /* Podfile in Resources */,
+				1F948723204BB9D800DDBBFA /* SwipeableMealView.xib in Resources */,
 				1F83FFCF1E0C9F5100A35850 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,10 +239,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FEBF5A01E19999A00F10B7D /* MealPlan.swift in Sources */,
+				1FEBF5A01E19999A00F10B7D /* MealPlanView.swift in Sources */,
 				1FD5B77D1E124B4000CF9552 /* FoodComparer.swift in Sources */,
 				1F83FFCC1E0C9F5100A35850 /* ViewController.swift in Sources */,
+				1F948725204BBEF300DDBBFA /* SwipeableMealView.swift in Sources */,
 				1FD5B7771E12091100CF9552 /* FSClient+Comparison.swift in Sources */,
+				1F948721204BB1D200DDBBFA /* MealPlanViewController.swift in Sources */,
 				1F83FFCA1E0C9F5100A35850 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
